@@ -7,7 +7,7 @@
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="Undangan Pernikahan Hanif & Agung">
         <meta property="og:description" content="Kami mengundang Anda untuk hadir di hari bahagia kami.">
-        <meta property="og:image" content="https://hanif-wedding.my.id/asset/generated_image/hero_image.jpg">
+        <meta property="og:image" content="{{ asset('asset/the_couple.jpeg') }}">
         <meta property="og:url" content="https://hanif-wedding.my.id/">
         <meta property="og:type" content="website">
 
@@ -15,7 +15,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Undangan Pernikahan Hanif & Agung">
         <meta name="twitter:description" content="Kami mengundang Anda untuk hadir di hari bahagia kami.">
-        <meta name="twitter:image" content="https://hanif-wedding.my.id/asset/generated_image/hero_image.jpg">
+        <meta name="twitter:image" content="{{ asset('asset/the_couple.jpeg') }}">
 
         <title>Agung & Hanif - Wedding Invitation</title>
 
@@ -66,7 +66,7 @@
                 
                 <p class="font-script text-3xl md:text-4xl text-gray-600 mb-2 mt-4 ml-0 md:ml-4 tracking-wider">Undangan Pernikahan</p>
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-tight text-gray-900 mb-6 drop-shadow-sm">
-                    Hanif<br/><span class="text-4xl md:text-6xl">&</span> <br/> Agung
+                    {{ $bride->nickname ?? 'Hanif' }}<br/><span class="text-4xl md:text-6xl">&</span> <br/> {{ $groom->nickname ?? 'Agung' }}
                 </h1>
                 <div class="mb-8">
                     <p class="text-sm font-medium text-gray-500 uppercase tracking-widest mb-1">Dear Sir/Madam:</p>
@@ -83,7 +83,7 @@
             <div class="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center md:justify-end relative">
                 <!-- Arched Image Container -->
                 <div class="relative w-72 h-96 md:w-96 md:h-[32rem] overflow-hidden rounded-t-full shadow-xl bg-gray-200">
-                    <img src="{{ asset('asset/generated_image/hero_image.jpg') }}" alt="Agung and Hanif" class="w-full h-full object-cover rounded-t-full transition-transform duration-700 hover:scale-105" loading="lazy" />
+                    <img src="{{ asset('asset/the_couple.jpeg') }}" alt="Agung and Hanif" class="w-full h-full object-cover rounded-t-full transition-transform duration-700 hover:scale-105" loading="lazy" />
                 </div>
                 <!-- Subtle decorative background element -->
                 <div class="absolute -z-10 w-full h-full border border-gray-300 rounded-t-full top-4 -right-4 md:-right-8 opacity-50"></div>
@@ -97,26 +97,35 @@
             <section id="the-couple" class="py-24 bg-white">
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 relative">
-                    
                     <!-- Bride -->
-                    <div class="flex flex-col items-center z-10">
+                    <div class="flex flex-col items-center z-10 w-full md:w-1/3">
                         <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mb-4">
-                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400&auto=format&fit=crop" alt="The Bride" class="w-full h-full object-cover" loading="lazy" />
+                            <img src="{{ $bride && $bride->image ? asset('storage/' . $bride->image) : 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400&auto=format&fit=crop' }}" alt="The Bride" class="w-full h-full object-cover object-top" loading="lazy" />
                         </div>
-                        <h3 class="font-serif text-2xl mb-1 text-gray-800">Hanif</h3>
-                        <p class="text-xs uppercase tracking-widest text-gray-500">The Bride</p>
+                        <h3 class="font-serif text-2xl mb-1 text-gray-800 text-center">{{ $bride->full_name ?? 'Hanif' }}</h3>
+                        <p class="text-xs uppercase tracking-widest text-gray-500 mb-3">Mempelai Wanita</p>
+                        @if($bride && ($bride->father_name || $bride->mother_name))
+                            <p class="text-sm text-gray-500 text-center leading-relaxed">
+                                Putri dari<br/>Bapak {{ $bride->father_name ?? '...' }} & Ibu {{ $bride->mother_name ?? '...' }}
+                            </p>
+                        @endif
                     </div>
 
                     <!-- Ampersand -->
-                    <div class="text-6xl font-serif italic text-gray-300 px-4 z-0 hidden md:block">&</div>
+                    <div class="text-6xl font-serif italic text-gray-300 px-4 z-0 hidden md:block shrink-0">&</div>
 
                     <!-- Groom -->
-                    <div class="flex flex-col items-center z-10">
+                    <div class="flex flex-col items-center z-10 w-full md:w-1/3">
                         <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-lg mb-4">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" alt="The Groom" class="w-full h-full object-cover" loading="lazy">
+                            <img src="{{ $groom && $groom->image ? asset('storage/' . $groom->image) : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop' }}" alt="The Groom" class="w-full h-full object-cover object-top" loading="lazy">
                         </div>
-                        <h3 class="font-serif text-2xl mb-1 text-gray-800">Agung</h3>
-                        <p class="text-xs uppercase tracking-widest text-gray-500">The Groom</p>
+                        <h3 class="font-serif text-2xl mb-1 text-gray-800 text-center">{{ $groom->full_name ?? 'Agung' }}</h3>
+                        <p class="text-xs uppercase tracking-widest text-gray-500 mb-3">Mempelai Pria</p>
+                        @if($groom && ($groom->father_name || $groom->mother_name))
+                            <p class="text-sm text-gray-500 text-center leading-relaxed">
+                                Putra dari<br/>Bapak {{ $groom->father_name ?? '...' }} & Ibu {{ $groom->mother_name ?? '...' }}
+                            </p>
+                        @endif
                     </div>
                     
                 </div>
@@ -142,7 +151,7 @@
                     <div class="flex flex-col items-center group cursor-pointer">
                         <span class="text-xs text-blue-500 font-semibold uppercase tracking-widest mb-3 transition-colors group-hover:text-blue-600">Morning</span>
                         <h4 class="font-serif text-2xl text-gray-900 mb-2">Akad Nikah</h4>
-                        <p class="text-gray-500 text-sm mb-4">10:00 AM - 11:30 AM</p>
+                        <p class="text-gray-500 text-sm mb-4">08:00 WIB</p>
                         
                     </div>
                     
@@ -152,7 +161,7 @@
                         <div class="hidden md:block absolute left-0 top-1/2 w-px h-24 bg-gray-200 -mt-12 -ml-6"></div>
                         <span class="text-xs text-blue-500 font-semibold uppercase tracking-widest mb-3 transition-colors group-hover:text-blue-600">Afternoon</span>
                         <h4 class="font-serif text-2xl text-gray-900 mb-2">Resepsi Pernikahan</h4>
-                        <p class="text-gray-500 text-sm mb-4">12:30 PM - 04:00 PM</p>
+                        <p class="text-gray-500 text-sm mb-4">11:00 - 12:30 WIB</p>
                         
                     </div>
                 </div>
@@ -160,13 +169,14 @@
                 <!-- Google Map Location -->
                 <div class="mt-20 max-w-4xl mx-auto flex flex-col items-center">
                     <i data-lucide="map-pin" class="w-6 h-6 text-gray-400 mb-3"></i>
-                    <h4 class="font-serif text-2xl text-gray-900 mb-3">Location</h4>
+                    <h4 class="font-serif text-2xl text-gray-900 mb-3">Lokasi Acara</h4>
                     <p class="text-gray-600 text-sm text-center leading-relaxed max-w-lg mb-8">
-                        Polines Semarang, Jl. Prof. Soedarto, Tembalang, Kec. Tembalang, Kota Semarang, Jawa Tengah 50275
+                        Auditorium Poltekkes Kemenkes Semarang.<br/>
+                        Jalan Tirto Agung, Pedalangan, Kec. Banyumanik, Kota Semarang, Jawa Tengah 50268
                     </p>
                     <div class="w-full h-80 rounded-xl overflow-hidden shadow-lg border border-gray-200">
                         <iframe 
-                            src="https://maps.google.com/maps?q=Polines%20Semarang,%20Jl.%20Prof.%20Soedarto,%20Tembalang,%20Semarang&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                            src="https://maps.google.com/maps?q=Auditorium%20Poltekkes%20Kemenkes%20Semarang,%20Pedalangan,%20Semarang&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                             width="100%" 
                             height="100%" 
                             style="border:0;" 
@@ -175,7 +185,7 @@
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
-                    <a href="https://maps.google.com/maps?q=Polines%20Semarang,%20Jl.%20Prof.%20Soedarto,%20Tembalang,%20Semarang" target="_blank" class="mt-6 px-6 py-3 border border-gray-400 text-gray-700 hover:bg-gray-900 hover:text-white uppercase tracking-widest text-xs font-medium transition-all duration-300 rounded focus:outline-none flex items-center gap-2">
+                    <a href="https://maps.google.com/maps?q=Auditorium%20Poltekkes%20Kemenkes%20Semarang,%20Pedalangan,%20Semarang" target="_blank" class="mt-6 px-6 py-3 border border-gray-400 text-gray-700 hover:bg-gray-900 hover:text-white uppercase tracking-widest text-xs font-medium transition-all duration-300 rounded focus:outline-none flex items-center gap-2">
                         Get Directions
                     </a>
                 </div>
@@ -198,7 +208,7 @@
         <!-- Our Moments Gallery -->
         <section class="py-24 bg-[#333333] mt-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                <h2 class="font-serif text-3xl md:text-4xl text-center text-white mb-16 font-light tracking-wide">Our Moments</h2>
+                <h2 class="font-serif text-3xl md:text-4xl text-center text-white mb-16 font-light tracking-wide">Momen Kebersamaan Kami</h2>
                 
                 <!-- Masonry-style grid layout -->
                 <div class="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
@@ -239,7 +249,7 @@
         <!-- Our Love Story -->
         <section class="py-24 bg-[#FAFAFA]">
             <div class="max-w-6xl mx-auto px-6">
-                <h2 class="font-serif text-3xl md:text-4xl text-center text-gray-900 mb-16">Our Love Story</h2>
+                <h2 class="font-serif text-3xl md:text-4xl text-center text-gray-900 mb-16">Cerita Cinta Kami</h2>
                 
                 <div class="space-y-16">
                     <!-- Story Block 1 -->
@@ -295,8 +305,8 @@
             <div class="relative z-10 max-w-xl mx-auto px-6">
                 <!-- Outer mock container -->
                 <div class="bg-black/60 backdrop-blur-sm p-10 md:p-14 rounded-2xl border border-white/10 shadow-2xl">
-                    <h2 class="font-serif text-4xl mb-2 text-white text-center">RSVP</h2>
-                    <p class="text-center text-gray-300 text-sm mb-8">Please let us know if you can join us.</p>
+                    <h2 class="font-serif text-4xl mb-2 text-white text-center">Buku Tamu</h2>
+                    <p class="text-center text-gray-300 text-sm mb-8">Kehadiran anda merupakan harapan kami.</p>
                     
                     @if(session('success'))
                         <div class="bg-green-500/10 border border-green-500/20 text-green-400 text-center rounded-lg p-4 mb-6">
@@ -308,31 +318,31 @@
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">First Name</label>
+                                <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Nama Depan</label>
                                 <input type="text" name="first_name" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors" placeholder="John" required>
                             </div>
                             <div>
-                                <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Last Name</label>
+                                <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Nama Belakang</label>
                                 <input type="text" name="last_name" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors" placeholder="Doe" required>
                             </div>
                         </div>
                         
                         <div>
-                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Phone Number</label>
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Nomor Telepon</label>
                             <input type="tel" name="phone_number" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors" placeholder="+62 812 3456 7890" required>
                         </div>
                         
                         <div>
-                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Will you attend?</label>
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Konfirmasi Kehadiran</label>
                             <select name="is_attending" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors appearance-none" required>
-                                <option value="" disabled selected class="text-gray-900">Please select...</option>
-                                <option value="yes" class="text-gray-900">Yes, I will be there</option>
-                                <option value="no" class="text-gray-900">Sorry, I can't make it</option>
+                                <option value="" disabled selected class="text-gray-900">Silahkan pilih...</option>
+                                <option value="yes" class="text-gray-900">Tentu, saya akan hadir</option>
+                                <option value="no" class="text-gray-900">Maaf, saya tidak bisa menghadiri</option>
                             </select>
                         </div>
 
                         <button type="submit" class="w-full bg-white text-gray-900 hover:bg-gray-200 uppercase tracking-widest text-sm font-semibold py-4 rounded-lg transition-colors cursor-pointer mt-4">
-                            Send RSVP
+                            Kirim Jawaban
                         </button>
                     </form>
                 </div>
@@ -373,7 +383,7 @@
 
         <!-- Footer -->
         <footer class="bg-[#F8F8F8] py-16 text-center text-gray-500 border-t border-gray-200">
-            <div class="font-serif italic text-4xl text-gray-400 mb-6">H&A</div>
+            <div class="font-serif italic text-4xl text-gray-400 mb-6">{{ $bride ? substr($bride->nickname, 0, 1) : 'H' }}&{{ $groom ? substr($groom->nickname, 0, 1) : 'A' }}</div>
             <p class="font-script text-3xl mb-4 text-gray-600">Thank you</p>
             <p class="text-xs uppercase tracking-widest mb-8">We look forward to celebrating with you.</p>
             

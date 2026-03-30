@@ -37,12 +37,7 @@ class GuestsTable
                             $phone = '62' . substr($phone, 1);
                         }
                         $url = "https://hanif-wedding.my.id/?to=" . rawurlencode($record->name);
-                        //$message = "Halo " . $record->name . ", kami mengundang Anda: " . $url;
-                        $message = "Assalamualaikum Warahmatullahi Wabarakatuh <br/>";
-                        $message .="Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu ". $record->name."<br/>";
-                        $message .= "Untuk menghadiri acara kami. <br/>";
-                        $message .= "Untuk menghadiri acara kami. <br/>";
-                        $message .= $url;
+                        $message = "Kepada yang terhormat Bapak/Ibu {$record->name}, kami mengundang untuk menghadiri momen bahagia kami dalam acara\n\n{$url}\n\nBesar harapan kami agar Bapak/Ibu {$record->name} untuk dapat menghadiri acara ini, terimakasih.";
                         return "https://wa.me/" . $phone . "?text=" . rawurlencode($message);
                     })
                     ->openUrlInNewTab(),
