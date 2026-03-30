@@ -298,26 +298,33 @@
                     <h2 class="font-serif text-4xl mb-2 text-white text-center">RSVP</h2>
                     <p class="text-center text-gray-300 text-sm mb-8">Please let us know if you can join us.</p>
                     
-                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('RSVP mock submitted!');">
+                    @if(session('success'))
+                        <div class="bg-green-500/10 border border-green-500/20 text-green-400 text-center rounded-lg p-4 mb-6">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <form class="space-y-6" action="{{ route('rsvp.store') }}" method="POST">
+                        @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">First Name</label>
-                                <input type="text" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors" placeholder="John" required>
+                                <input type="text" name="first_name" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors" placeholder="John" required>
                             </div>
                             <div>
                                 <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Last Name</label>
-                                <input type="text" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors" placeholder="Doe" required>
+                                <input type="text" name="last_name" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors" placeholder="Doe" required>
                             </div>
                         </div>
                         
                         <div>
-                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Email</label>
-                            <input type="email" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors" placeholder="you@email.com" required>
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Phone Number</label>
+                            <input type="tel" name="phone_number" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors" placeholder="+62 812 3456 7890" required>
                         </div>
                         
                         <div>
                             <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Will you attend?</label>
-                            <select class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors appearance-none" required>
+                            <select name="is_attending" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/50 transition-colors appearance-none" required>
                                 <option value="" disabled selected class="text-gray-900">Please select...</option>
                                 <option value="yes" class="text-gray-900">Yes, I will be there</option>
                                 <option value="no" class="text-gray-900">Sorry, I can't make it</option>

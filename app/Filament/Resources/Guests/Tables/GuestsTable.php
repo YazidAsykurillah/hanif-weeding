@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Filament\Resources\Guests\Tables;
+
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Tables\Table;
+
+class GuestsTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                \Filament\Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                \Filament\Tables\Columns\TextColumn::make('phone_number')
+                    ->searchable(),
+                \Filament\Tables\Columns\TextColumn::make('link')
+                    ->state(fn (\App\Models\Guest $record): string => url('/?to=' . rawurlencode($record->name)))
+                    ->copyable()
+                    ->copyMessage('Invitation link copied')
+                    ->copyMessageDuration(1500),
+            ])
+            ->filters([
+                //
+            ])
+            ->recordActions([
+                \Filament\Actions\Action::make('send_whatsapp')
+                    ->label('Kirim WA')
+                    ->icon('heroicon-m-chat-bubble-oval-left-ellipsis')
+                    ->color('success')
+                    ->url(function (\App\Models\Guest $record): string {
+                        $phone = preg_replace('/[^0-9]/', '', (string) $record->phone_number);
+                        if (str_starts_with($phone, '0')) {
+                            $phone = '62' . substr($phone, 1);
+                        }
+                        $url = "https://hanif-wedding.my.id/?to=" . rawurlencode($record->name);
+                        //$message = "Halo " . $record->name . ", kami mengundang Anda: " . $url;
+                        $message = "Assalamualaikum Warahmatullahi Wabarakatuh <br/>";
+                        $message .="Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu ". $record->name."<br/>";
+                        $message .= "Untuk menghadiri acara kami. <br/>";
+                        $message .= "Untuk menghadiri acara kami. <br/>";
+                        $message .= $url;
+                        return "https://wa.me/" . $phone . "?text=" . rawurlencode($message);
+                    })
+                    ->openUrlInNewTab(),
+                \Filament\Actions\Action::make('copy_link')
+                    ->label('Copy Link')
+                    ->icon('heroicon-m-clipboard-document-check')
+                    ->color('success')
+                    ->url('#')
+                    ->extraAttributes(fn (\App\Models\Guest $record) => [
+                        'x-on:click.prevent' => "let t='" . url('/?to=' . rawurlencode($record->name)) . "'; if(navigator.clipboard && window.isSecureContext){navigator.clipboard.writeText(t);}else{let i=document.createElement('input');i.value=t;document.body.appendChild(i);i.select();document.execCommand('copy');document.body.removeChild(i);} \$tooltip('Copied!')",
+                    ]),
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}
