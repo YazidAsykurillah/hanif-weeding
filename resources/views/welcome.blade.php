@@ -3,6 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="Undangan Pernikahan Hanif & Agung">
+        <meta property="og:description" content="Kami mengundang Anda untuk hadir di hari bahagia kami.">
+        <meta property="og:image" content="{{ asset('asset/generated_image/hero_image.jpg') }}">
+        <meta property="og:url" content="{{ url('/') }}">
+        <meta property="og:type" content="website">
+
         <title>Agung & Hanif - Wedding Invitation</title>
 
         <!-- Fonts -->
@@ -69,7 +77,7 @@
             <div class="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center md:justify-end relative">
                 <!-- Arched Image Container -->
                 <div class="relative w-72 h-96 md:w-96 md:h-[32rem] overflow-hidden rounded-t-full shadow-xl bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop" alt="Agung and Hanif" class="w-full h-full object-cover rounded-t-full transition-transform duration-700 hover:scale-105" loading="lazy" />
+                    <img src="{{ asset('asset/generated_image/hero_image.jpg') }}" alt="Agung and Hanif" class="w-full h-full object-cover rounded-t-full transition-transform duration-700 hover:scale-105" loading="lazy" />
                 </div>
                 <!-- Subtle decorative background element -->
                 <div class="absolute -z-10 w-full h-full border border-gray-300 rounded-t-full top-4 -right-4 md:-right-8 opacity-50"></div>
