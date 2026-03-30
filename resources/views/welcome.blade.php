@@ -7,9 +7,15 @@
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="Undangan Pernikahan Hanif & Agung">
         <meta property="og:description" content="Kami mengundang Anda untuk hadir di hari bahagia kami.">
-        <meta property="og:image" content="{{ asset('asset/generated_image/hero_image.jpg') }}">
-        <meta property="og:url" content="{{ url('/') }}">
+        <meta property="og:image" content="https://hanif-wedding.my.id/asset/generated_image/hero_image.jpg">
+        <meta property="og:url" content="https://hanif-wedding.my.id/">
         <meta property="og:type" content="website">
+
+        <!-- Twitter Card Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Undangan Pernikahan Hanif & Agung">
+        <meta name="twitter:description" content="Kami mengundang Anda untuk hadir di hari bahagia kami.">
+        <meta name="twitter:image" content="https://hanif-wedding.my.id/asset/generated_image/hero_image.jpg">
 
         <title>Agung & Hanif - Wedding Invitation</title>
 
