@@ -24,8 +24,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
         
-        <!-- Icons -->
+        <!-- Icons & Effects -->
         <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
         <!-- Tailwind CSS via Vite -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -50,7 +51,24 @@
                 -ms-overflow-style: none;  /* IE and Edge */
                 scrollbar-width: none;  /* Firefox */
             }
+            
+            /* Splash Ripple Effect */
+            .splash-ripple {
+                position: absolute;
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple-splash 600ms ease-out;
+                background-color: rgba(255, 255, 255, 0.3);
+                pointer-events: none;
+            }
+            @keyframes ripple-splash {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
         </style>
+    </head>
     <body class="font-sans antialiased text-gray-800 bg-[#FAFAFA] min-h-screen flex flex-col selection:bg-gray-200">
 
         <!-- Header / Hero Section (Gate) -->
@@ -73,9 +91,10 @@
                     <p id="guest-name" class="font-serif text-2xl text-gray-800">Name of the guest</p>
                 </div>
 
-                <div class="mt-4 md:mt-2">
-                    <button id="open-invitation-btn" class="px-8 py-4 border border-gray-400 text-gray-700 hover:bg-gray-900 hover:text-white uppercase tracking-widest text-sm font-medium transition-all duration-300 rounded focus:outline-none">
-                        Open Invitation
+                <div class="mt-6 md:mt-4">
+                    <button id="open-invitation-btn" class="relative overflow-hidden px-10 py-4 bg-gray-900 text-white shadow-lg hover:bg-gray-800 hover:shadow-xl hover:-translate-y-0.5 transform uppercase tracking-widest text-sm font-medium transition-all duration-300 rounded-md focus:outline-none flex items-center gap-2 justify-center w-full md:w-auto">
+                        <i data-lucide="mail-open" class="w-4 h-4 z-10 pointer-events-none"></i> 
+                        <span class="z-10 pointer-events-none">Buka Undangan</span>
                     </button>
                 </div>
             </div>
@@ -413,21 +432,58 @@
                 const openBtn = document.getElementById('open-invitation-btn');
                 const content = document.getElementById('invitation-content');
 
-                openBtn.addEventListener('click', function() {
-                    // Reveal the content
-                    content.classList.remove('hidden');
-                    // Small delay to allow CSS opacity transition to trigger
-                    setTimeout(() => {
-                        content.classList.remove('opacity-0');
-                    }, 50);
+                openBtn.addEventListener('click', function(e) {
+                    // Create an elegant inner splash/ripple effect
+                    const circle = document.createElement('span');
+                    const diameter = Math.max(openBtn.clientWidth, openBtn.clientHeight);
+                    const radius = diameter / 2;
+                    
+                    let x = e.clientX ? e.clientX - openBtn.getBoundingClientRect().left : openBtn.clientWidth / 2;
+                    let y = e.clientY ? e.clientY - openBtn.getBoundingClientRect().top : openBtn.clientHeight / 2;
 
-                    // Fade out the button entirely
-                    openBtn.classList.add('opacity-0', 'pointer-events-none');
+                    circle.style.width = circle.style.height = `${diameter}px`;
+                    circle.style.left = `${x - radius}px`;
+                    circle.style.top = `${y - radius}px`;
+                    circle.classList.add('splash-ripple');
 
-                    // Smooth scroll down to the first section after a short delay
+                    // Remove existing ripples if any
+                    const existingRipple = openBtn.querySelector('.splash-ripple');
+                    if (existingRipple) {
+                        existingRipple.remove();
+                    }
+                    openBtn.appendChild(circle);
+
+                    // Trigger an elegant external particle splash (confetti)
+                    const btnRect = openBtn.getBoundingClientRect();
+                    const originX = (btnRect.left + (btnRect.width / 2)) / window.innerWidth;
+                    const originY = (btnRect.top + (btnRect.height / 2)) / window.innerHeight;
+                    
+                    if (typeof confetti !== 'undefined') {
+                        confetti({
+                            particleCount: 50,
+                            spread: 60,
+                            origin: { x: originX, y: originY },
+                            colors: ['#4B5563', '#9CA3AF', '#D1D5DB', '#111827'],
+                            disableForReducedMotion: true,
+                            zIndex: 100
+                        });
+                    }
+
+                    // Reveal the content after a tiny delay so the splash can be enjoyed
                     setTimeout(() => {
-                        document.getElementById('the-couple').scrollIntoView({ behavior: 'smooth' });
-                    }, 500);
+                        content.classList.remove('hidden');
+                        setTimeout(() => {
+                            content.classList.remove('opacity-0');
+                        }, 50);
+
+                        // Fade out the button smoothly
+                        openBtn.classList.add('opacity-0', 'pointer-events-none');
+
+                        // Smooth scroll down to the first section after a short delay
+                        setTimeout(() => {
+                            document.getElementById('the-couple').scrollIntoView({ behavior: 'smooth' });
+                        }, 400);
+                    }, 250);
                 });
             });
         </script>
