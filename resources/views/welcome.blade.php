@@ -419,6 +419,16 @@
 
         </div> <!-- End of Invitation Content -->
 
+        <!-- Audio Player & Controls -->
+        <!-- Update the 'src' attribute below with your actual music file path -->
+        <audio id="bg-music" loop>
+            <source src="{{ asset('asset/wedding_music.mp3') }}" type="audio/mpeg">
+        </audio>
+
+        <button id="music-toggle" class="fixed bottom-6 right-6 bg-gray-900/80 backdrop-blur-md text-white p-4 rounded-full shadow-2xl z-[100] transition-transform duration-300 hover:scale-110 hidden focus:outline-none">
+            <i data-lucide="volume-2" class="w-5 h-5 pointer-events-none" id="music-icon"></i>
+        </button>
+
         <!-- Gate JavaScript -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -431,6 +441,27 @@
 
                 const openBtn = document.getElementById('open-invitation-btn');
                 const content = document.getElementById('invitation-content');
+
+                // Audio elements
+                const bgMusic = document.getElementById('bg-music');
+                const musicToggle = document.getElementById('music-toggle');
+                const musicIcon = document.getElementById('music-icon');
+                let isMusicPlaying = false;
+
+                // Toggle music function
+                musicToggle.addEventListener('click', function() {
+                    if (isMusicPlaying) {
+                        bgMusic.pause();
+                        musicIcon.setAttribute('data-lucide', 'volume-x');
+                        musicToggle.classList.replace('bg-gray-900/80', 'bg-black/40');
+                    } else {
+                        bgMusic.play();
+                        musicIcon.setAttribute('data-lucide', 'volume-2');
+                        musicToggle.classList.replace('bg-black/40', 'bg-gray-900/80');
+                    }
+                    isMusicPlaying = !isMusicPlaying;
+                    lucide.createIcons(); // Refresh icon
+                });
 
                 openBtn.addEventListener('click', function(e) {
                     // Create an elegant inner splash/ripple effect
@@ -475,6 +506,14 @@
                         setTimeout(() => {
                             content.classList.remove('opacity-0');
                         }, 50);
+
+                        // Start playing the background music
+                        bgMusic.play().then(() => {
+                            isMusicPlaying = true;
+                            musicToggle.classList.remove('hidden');
+                        }).catch(err => {
+                            console.warn("Autoplay was prevented by browser policies:", err);
+                        });
 
                         // Fade out the button smoothly
                         openBtn.classList.add('opacity-0', 'pointer-events-none');
