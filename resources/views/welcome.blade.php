@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth overflow-x-hidden">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,7 +69,7 @@
             }
         </style>
     </head>
-    <body class="font-sans antialiased text-gray-800 bg-[#FAFAFA] min-h-screen flex flex-col selection:bg-gray-200">
+    <body class="font-sans antialiased text-gray-800 bg-[#FAFAFA] min-h-screen flex flex-col selection:bg-gray-200 overflow-x-hidden">
 
         <!-- Header / Hero Section (Gate) -->
         <header class="w-full max-w-7xl mx-auto px-6 py-8 md:py-16 flex flex-col md:flex-row items-center justify-center min-h-screen">
@@ -268,14 +268,14 @@
         <!-- Our Love Story -->
         <section class="py-24 bg-[#FAFAFA]">
             <div class="max-w-6xl mx-auto px-6">
-                <h2 class="font-serif text-3xl md:text-4xl text-center text-gray-900 mb-16">Cerita Cinta Kami</h2>
+                <h2 class="font-serif text-3xl md:text-4xl text-center text-gray-900 mb-16">Cerita Kami</h2>
                 
                 <div class="space-y-16">
                     <!-- Story Block 1 -->
                     <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
                         <!-- Text -->
                         <div class="w-full md:w-1/2 text-center md:text-left order-2 md:order-1 p-8 bg-white border border-gray-100 shadow-sm rounded-xl">
-                            <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">April 2022</span>
+                            <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">September 2025</span>
                             <h3 class="font-serif text-2xl text-gray-900 mb-4">First Met</h3>
                             <p class="text-gray-600 leading-relaxed text-sm">We first crossed paths at a mutual friend's gathering. A simple conversation over morning coffee quickly turned into a deep connection that changed the course of our lives.</p>
                         </div>
@@ -293,7 +293,7 @@
                         </div>
                         <!-- Text -->
                         <div class="w-full md:w-1/2 text-center md:text-left order-2 p-8 bg-white border border-gray-100 shadow-sm rounded-xl">
-                            <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">December 2024</span>
+                            <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">January 2026</span>
                             <h3 class="font-serif text-2xl text-gray-900 mb-4">The Proposal</h3>
                             <p class="text-gray-600 leading-relaxed text-sm">On a quiet winter evening, beneath a sky full of stars during our trip to Kyoto, Agung asked the question. With joyful tears, Hanif said 'Yes', and our forever began.</p>
                         </div>
@@ -303,7 +303,7 @@
                     <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
                         <!-- Text -->
                         <div class="w-full md:w-1/2 text-center md:text-left order-2 md:order-1 p-8 bg-white border border-gray-100 shadow-sm rounded-xl">
-                            <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">August 2025</span>
+                            <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">February 2026</span>
                             <h3 class="font-serif text-2xl text-gray-900 mb-4">Pre-Wedding Trip</h3>
                             <p class="text-gray-600 leading-relaxed text-sm">We traveled across Europe together, capturing beautiful moments along the Amalfi Coast, making memories that laid the foundation for our impending union.</p>
                         </div>
@@ -375,27 +375,26 @@
                 <h2 class="font-serif text-3xl md:text-4xl text-gray-900 mb-6 font-light">Send Your Gift</h2>
                 <p class="text-gray-500 mb-12 max-w-xl mx-auto text-sm leading-relaxed">Your presence at our wedding is the greatest gift of all. However, should you wish to help us celebrate with a gift, a registry is available below.</p>
                 
-                <div class="flex flex-col md:flex-row justify-center items-center gap-6">
-                    <!-- Bank Transer Card -->
-                    <div class="w-full md:w-64 p-8 border border-gray-200 rounded-xl hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center">
-                        <i data-lucide="landmark" class="w-8 h-8 text-gray-600 mb-4"></i>
-                        <h4 class="font-medium text-gray-900 mb-1">Bank Transfer</h4>
-                        <p class="text-xs text-gray-500">View Details</p>
-                    </div>
-                    
-                    <!-- PayPal Card -->
-                    <div class="w-full md:w-64 p-8 border border-gray-200 rounded-xl hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="h-6 mb-5" loading="lazy">
-                        <h4 class="font-medium text-gray-900 mb-1">PayPal</h4>
-                        <p class="text-xs text-gray-500">Send via PayPal</p>
-                    </div>
-
-                    <!-- Stripe Card -->
-                    <div class="w-full md:w-64 p-8 border border-gray-200 rounded-xl hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center">
-                        <i data-lucide="credit-card" class="w-8 h-8 text-blue-600 mb-4"></i>
-                        <h4 class="font-medium text-gray-900 mb-1">Credit Card</h4>
-                        <p class="text-xs text-gray-500">Secure Payment</p>
-                    </div>
+                <div class="flex flex-col md:flex-row flex-wrap justify-center items-stretch gap-6">
+                    @forelse($bankAccounts as $account)
+                        <div class="w-full md:w-64 p-8 border border-gray-200 rounded-xl hover:shadow-lg transition-shadow bg-gray-50 flex flex-col items-center">
+                            @if($account->image)
+                                <img src="{{ asset('storage/' . $account->image) }}" alt="{{ $account->bank_name }}" class="h-10 mb-5 object-contain" loading="lazy">
+                            @else
+                                <i data-lucide="landmark" class="w-8 h-8 text-gray-400 mb-5"></i>
+                            @endif
+                            <h4 class="font-medium text-gray-900 mb-1">{{ $account->bank_name }}</h4>
+                            <p class="text-xs text-gray-500 mb-4 uppercase tracking-widest">{{ $account->bank_account_name }}</p>
+                            
+                            <div class="mt-auto w-full mt-4">
+                                <p class="text-sm font-mono bg-white border border-gray-200 rounded-md py-3 px-4 text-gray-800 select-all tracking-wider flex items-center justify-center gap-2 group cursor-text">
+                                    {{ $account->account_number }}
+                                </p>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="text-gray-500 text-sm italic py-8">Informasi rekening akan segera ditambahkan.</p>
+                    @endforelse
                 </div>
             </div>
         </section>
@@ -413,7 +412,8 @@
                 <a href="#" class="hover:text-gray-800 transition-colors">Contact</a>
             </div>
             
-            <p class="text-xs mt-12 text-gray-400">&copy; 2026 Agung & Hanif. All rights reserved.</p>
+            <p class="text-xs mt-12 text-gray-400 mb-2">Music : Welcome Home - Nathan Moore</p>
+            <p class="text-xs text-gray-400">&copy; 2026 Agung & Hanif. All rights reserved.</p>
         </footer>
         
 
@@ -422,7 +422,7 @@
         <!-- Audio Player & Controls -->
         <!-- Update the 'src' attribute below with your actual music file path -->
         <audio id="bg-music" loop>
-            <source src="{{ asset('asset/wedding_music.mp3') }}" type="audio/mpeg">
+            <source src="{{ asset('asset/welcome_home_nathan_moore.mp3') }}" type="audio/mpeg">
         </audio>
 
         <button id="music-toggle" class="fixed bottom-6 right-6 bg-gray-900/80 backdrop-blur-md text-white p-4 rounded-full shadow-2xl z-[100] transition-transform duration-300 hover:scale-110 hidden focus:outline-none">
