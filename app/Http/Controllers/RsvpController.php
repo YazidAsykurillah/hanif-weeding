@@ -9,6 +9,11 @@ class RsvpController extends Controller
 {
     public function store(Request $request)
     {
+        // Honeypot check: Bots will fill this hidden field
+        if ($request->filled('hp_website')) {
+            return redirect()->back()->with('success', 'Thank you for your RSVP!');
+        }
+
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',

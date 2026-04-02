@@ -66,6 +66,11 @@
                     transform: scale(4);
                     opacity: 0;
                 }
+
+            /* Honeypot Security */
+            .hp-check {
+                display: none !important;
+                visibility: hidden !important;
             }
         </style>
     </head>
@@ -301,6 +306,11 @@
 
                     <form class="space-y-6" action="{{ route('rsvp.store') }}" method="POST">
                         @csrf
+                        <!-- Honeypot -->
+                        <div class="hp-check">
+                            <label for="hp_website">Website</label>
+                            <input type="text" name="hp_website" id="hp_website" autocomplete="off" tabindex="-1">
+                        </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Nama Depan</label>

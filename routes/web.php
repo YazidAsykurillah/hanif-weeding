@@ -11,4 +11,4 @@ Route::get('/', function () {
     return view('welcome', compact('bride', 'groom', 'bankAccounts'));
 });
 
-Route::post('/rsvp', [RsvpController::class, 'store'])->name('rsvp.store');
+Route::post('/rsvp', [RsvpController::class, 'store'])->middleware('throttle:3,1')->name('rsvp.store');
