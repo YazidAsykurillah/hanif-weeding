@@ -280,56 +280,7 @@
             </div>
         </section>
 
-        <!-- Our Love Story -->
-        <section class="py-24 bg-[#FAFAFA]">
-            <div class="max-w-6xl mx-auto px-6">
-                <h2 class="font-serif text-3xl md:text-4xl text-center text-gray-900 mb-16">Cerita Kami</h2>
-                
-                <div class="space-y-16">
-                    <!-- Story Block 1 -->
-                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-                        <!-- Text -->
-                        <div class="w-full md:w-1/2 text-center md:text-left order-2 md:order-1 p-8 bg-white border border-gray-100 shadow-sm rounded-xl">
-                            <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">September 2025</span>
-                            <h3 class="font-serif text-2xl text-gray-900 mb-4">First Met</h3>
-                            <p class="text-gray-600 leading-relaxed text-sm">We first crossed paths at a mutual friend's gathering. A simple conversation over morning coffee quickly turned into a deep connection that changed the course of our lives.</p>
-                        </div>
-                        <!-- Image -->
-                        <div class="w-full md:w-1/2 order-1 md:order-2">
-                            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600&auto=format&fit=crop" alt="First Met" class="w-full h-80 object-cover rounded-xl shadow-md md:grayscale md:hover:grayscale-0 transition-all duration-500" loading="lazy">
-                        </div>
-                    </div>
 
-                    <!-- Story Block 2 -->
-                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-                        <!-- Image -->
-                        <div class="w-full md:w-1/2 order-1">
-                            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=600&auto=format&fit=crop" alt="The Proposal" class="w-full h-80 object-cover rounded-xl shadow-md md:grayscale md:hover:grayscale-0 transition-all duration-500" loading="lazy">
-                        </div>
-                        <!-- Text -->
-                        <div class="w-full md:w-1/2 text-center md:text-left order-2 p-8 bg-white border border-gray-100 shadow-sm rounded-xl">
-                            <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">January 2026</span>
-                            <h3 class="font-serif text-2xl text-gray-900 mb-4">The Proposal</h3>
-                            <p class="text-gray-600 leading-relaxed text-sm">On a quiet winter evening, beneath a sky full of stars during our trip to Kyoto, Agung asked the question. With joyful tears, Hanif said 'Yes', and our forever began.</p>
-                        </div>
-                    </div>
-
-                    <!-- Story Block 3 -->
-                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-                        <!-- Text -->
-                        <div class="w-full md:w-1/2 text-center md:text-left order-2 md:order-1 p-8 bg-white border border-gray-100 shadow-sm rounded-xl">
-                            <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">February 2026</span>
-                            <h3 class="font-serif text-2xl text-gray-900 mb-4">Pre-Wedding Trip</h3>
-                            <p class="text-gray-600 leading-relaxed text-sm">We traveled across Europe together, capturing beautiful moments along the Amalfi Coast, making memories that laid the foundation for our impending union.</p>
-                        </div>
-                        <!-- Image -->
-                        <div class="w-full md:w-1/2 order-1 md:order-2">
-                            <img src="https://images.unsplash.com/photo-1473691955023-da1c49c95c78?q=80&w=600&auto=format&fit=crop" alt="Pre-Wedding" class="w-full h-80 object-cover rounded-xl shadow-md md:grayscale md:hover:grayscale-0 transition-all duration-500" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- RSVP Form Section -->
         <section class="relative py-32 bg-gray-900">
