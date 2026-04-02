@@ -10,6 +10,9 @@ class GuestForm
     {
         return $schema
             ->components([
+                \Filament\Forms\Components\TextInput::make('title')
+                    ->placeholder('Contoh: Bapak, Ibu, Sdr/i')
+                    ->maxLength(255),
                 \Filament\Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),

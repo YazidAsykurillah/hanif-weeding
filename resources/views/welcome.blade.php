@@ -92,8 +92,8 @@
                     {{ $bride->nickname ?? 'Hanif' }}<br/><span class="text-4xl md:text-6xl">&</span> <br/> {{ $groom->nickname ?? 'Agung' }}
                 </h1>
                 <div class="mb-8">
-                    <p class="text-sm font-medium text-gray-500 uppercase tracking-widest mb-1">Dear Sir/Madam:</p>
-                    <p id="guest-name" class="font-serif text-2xl text-gray-800">Name of the guest</p>
+                    <p id="guest-label" class="text-xs font-medium text-gray-500 uppercase tracking-widest mb-1">Kepada Yth.</p>
+                    <p id="guest-name" class="font-serif text-2xl text-gray-800">Tamu Undangan</p>
                 </div>
 
                 <div class="mt-6 md:mt-4">
