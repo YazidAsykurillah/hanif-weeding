@@ -349,7 +349,7 @@
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <i data-lucide="gift" class="w-8 h-8 mx-auto text-gray-400 mb-6"></i>
                 <h2 class="font-serif text-3xl md:text-4xl text-gray-900 mb-6 font-light">Send Your Gift</h2>
-                <p class="text-gray-500 mb-12 max-w-xl mx-auto text-sm leading-relaxed">Doa restu Anda merupakan hadiah terindah bagi kami, namu apabila berkenan dapat melalui rekening berikut:</p>
+                <p class="text-gray-500 mb-12 max-w-xl mx-auto text-sm leading-relaxed">Doa restu Anda merupakan hadiah terindah bagi kami, namun apabila berkenan dapat melalui rekening berikut:</p>
                 
                 <div class="flex flex-col md:flex-row flex-wrap justify-center items-stretch gap-6">
                     @forelse($bankAccounts as $account)
@@ -363,9 +363,14 @@
                             <p class="text-xs text-gray-500 mb-4 uppercase tracking-widest">{{ $account->bank_account_name }}</p>
                             
                             <div class="mt-auto w-full mt-4">
-                                <p class="text-sm font-mono bg-white border border-gray-200 rounded-md py-3 px-4 text-gray-800 select-all tracking-wider flex items-center justify-center gap-2 group cursor-text">
-                                    {{ $account->account_number }}
-                                </p>
+                                <button 
+                                    onclick="copyToClipboard('{{ $account->account_number }}', this)"
+                                    class="w-full text-sm font-mono bg-white border border-gray-200 rounded-md py-3 px-4 text-gray-800 tracking-wider flex items-center justify-center gap-2 group hover:bg-gray-50 transition-all duration-300 cursor-pointer focus:outline-none"
+                                    title="Click to copy account number"
+                                >
+                                    <span class="account-number">{{ $account->account_number }}</span>
+                                    <i data-lucide="copy" class="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors"></i>
+                                </button>
                             </div>
                         </div>
                     @empty
@@ -407,6 +412,55 @@
 
         <!-- Gate JavaScript -->
         <script>
+            function copyToClipboard(text, element) {
+                const showSuccess = () => {
+                    const icon = element.querySelector('i');
+                    const originalBg = element.classList.contains('bg-white') ? 'bg-white' : 'bg-gray-50';
+                    
+                    // Show success state
+                    icon.setAttribute('data-lucide', 'check');
+                    element.classList.remove('bg-white', 'bg-gray-50');
+                    element.classList.add('bg-green-50', 'border-green-200');
+                    lucide.createIcons(); // Refresh icons
+
+                    setTimeout(() => {
+                        icon.setAttribute('data-lucide', 'copy');
+                        element.classList.remove('bg-green-50', 'border-green-200');
+                        element.classList.add(originalBg);
+                        lucide.createIcons();
+                    }, 2000);
+                };
+
+                const fallbackCopy = (val) => {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = val;
+                    // Ensure textarea is not visible or affecting layout
+                    textArea.style.position = "fixed";
+                    textArea.style.left = "-9999px";
+                    textArea.style.top = "0";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    try {
+                        const successful = document.execCommand('copy');
+                        if (successful) showSuccess();
+                    } catch (err) {
+                        console.error('Fallback copy failed', err);
+                    }
+                    document.body.removeChild(textArea);
+                };
+
+                if (!navigator.clipboard) {
+                    fallbackCopy(text);
+                    return;
+                }
+                
+                navigator.clipboard.writeText(text).then(showSuccess).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    fallbackCopy(text);
+                });
+            }
+
             document.addEventListener('DOMContentLoaded', function() {
                 // Parse Guest Name from URL (?to=John%20Doe)
                 const urlParams = new URLSearchParams(window.location.search);
