@@ -349,7 +349,7 @@
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <i data-lucide="gift" class="w-8 h-8 mx-auto text-gray-400 mb-6"></i>
                 <h2 class="font-serif text-3xl md:text-4xl text-gray-900 mb-6 font-light">Send Your Gift</h2>
-                <p class="text-gray-500 mb-12 max-w-xl mx-auto text-sm leading-relaxed">Your presence at our wedding is the greatest gift of all. However, should you wish to help us celebrate with a gift, a registry is available below.</p>
+                <p class="text-gray-500 mb-12 max-w-xl mx-auto text-sm leading-relaxed">Doa restu Anda merupakan hadiah terindah bagi kami, namu apabila berkenan dapat melalui rekening berikut:</p>
                 
                 <div class="flex flex-col md:flex-row flex-wrap justify-center items-stretch gap-6">
                     @forelse($bankAccounts as $account)
