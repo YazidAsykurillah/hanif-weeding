@@ -211,15 +211,30 @@
             </div>
         </section>
 
-        <!-- Save the Date Video (Mock) -->
-        <section class="max-w-6xl mx-auto px-6 py-12">
-            <div class="w-full h-80 md:h-[32rem] relative rounded-xl overflow-hidden shadow-2xl group cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="Save the Date Video" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center transition-colors group-hover:bg-black/50">
-                    <h3 class="font-script text-5xl md:text-7xl text-white mb-6 drop-shadow-lg">Save The Date</h3>
-                    <div class="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center border border-white/30 text-white shadow-lg transition-transform group-hover:scale-110">
-                        <i data-lucide="play" class="w-8 h-8 ml-1"></i>
+        <!-- Feature Image Section -->
+        <section class="py-24 bg-white overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="relative group">
+                    <!-- Elegant background accent -->
+                    <div class="absolute -inset-4 bg-gray-50 rounded-[2rem] -z-10 transition-transform duration-1000 group-hover:scale-105"></div>
+                    
+                    <!-- Main image container with premium framing -->
+                    <div class="overflow-hidden rounded-2xl shadow-2xl aspect-[16/9] md:aspect-[21/9] border border-gray-100">
+                        <img src="{{ asset('asset/the_couple_2.jpeg') }}" alt="Agung and Hanif Moment" class="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" loading="lazy" />
+                        
+                        <!-- Soft overlay for depth -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                     </div>
+                    
+                    <!-- Decorative Floating Elements -->
+                    <div class="absolute -bottom-8 -right-8 w-40 h-40 bg-gray-900/5 backdrop-blur-xl rounded-full -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-1000"></div>
+                    <div class="absolute -top-8 -left-8 w-32 h-32 border border-gray-200 rounded-full -z-10 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-transform duration-1000"></div>
+                </div>
+                
+                <!-- Feature Image Caption -->
+                <div class="mt-12 text-center">
+                    <h3 class="font-serif text-3xl md:text-4xl text-gray-900 mb-2 uppercase tracking-[0.2em]">HANYA SATU</h3>
+                    <p class="font-serif italic text-gray-500 text-lg">Hanif Agung Nyata Bersatu</p>
                 </div>
             </div>
         </section>
