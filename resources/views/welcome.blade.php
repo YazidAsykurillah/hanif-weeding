@@ -219,8 +219,8 @@
                     <div class="absolute -inset-4 bg-gray-50 rounded-[2rem] -z-10 transition-transform duration-1000 group-hover:scale-105"></div>
                     
                     <!-- Main image container with premium framing -->
-                    <div class="overflow-hidden rounded-2xl shadow-2xl aspect-[16/9] md:aspect-[21/9] border border-gray-100">
-                        <img src="{{ asset('asset/the_couple_2.jpeg') }}" alt="Agung and Hanif Moment" class="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-110" loading="lazy" />
+                    <div class="overflow-hidden rounded-2xl shadow-2xl aspect-[4/3] md:aspect-[16/9] border border-gray-100">
+                        <img src="{{ asset('asset/the_couple_2.jpeg') }}" alt="Agung and Hanif Moment" class="w-full h-full object-cover object-[center_20%] transition-transform duration-[1500ms] group-hover:scale-110" loading="lazy" />
                         
                         <!-- Soft overlay for depth -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
