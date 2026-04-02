@@ -340,7 +340,7 @@
                 <!-- Outer mock container -->
                 <div class="bg-black/60 backdrop-blur-sm p-10 md:p-14 rounded-2xl border border-white/10 shadow-2xl">
                     <h2 class="font-serif text-4xl mb-2 text-white text-center">Buku Tamu</h2>
-                    <p class="text-center text-gray-300 text-sm mb-8">Kehadiran anda merupakan harapan kami.</p>
+                    <p class="text-center text-gray-300 text-sm mb-8">Suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
                     
                     @if(session('success'))
                         <div class="bg-green-500/10 border border-green-500/20 text-green-400 text-center rounded-lg p-4 mb-6">
@@ -376,7 +376,7 @@
                         </div>
 
                         <button type="submit" class="w-full bg-white text-gray-900 hover:bg-gray-200 uppercase tracking-widest text-sm font-semibold py-4 rounded-lg transition-colors cursor-pointer mt-4">
-                            Kirim Jawaban
+                            Isi Buku Tamu
                         </button>
                     </form>
                 </div>
