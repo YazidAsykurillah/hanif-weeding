@@ -23,7 +23,8 @@ class GuestsTable
                     ->state(fn (\App\Models\Guest $record): string => url('/?to=' . rawurlencode(($record->title ? $record->title . ' ' : '') . $record->name)))
                     ->copyable()
                     ->copyMessage('Invitation link copied')
-                    ->copyMessageDuration(1500),
+                    ->copyMessageDuration(1500)
+                    ->wrap(),
             ])
             ->filters([
                 //
