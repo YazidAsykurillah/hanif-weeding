@@ -41,7 +41,7 @@ class GuestsTable
                         }
                         $fullName = ($record->title ? $record->title . ' ' : '') . $record->name;
                         $url = "https://hanif-wedding.my.id/?to=" . rawurlencode($fullName);
-                        $message = "Kepada yang terhormat {$fullName}, kami mengundang untuk menghadiri momen bahagia kami dalam acara\n\n{$url}\n\nBesar harapan kami agar {$fullName} untuk dapat menghadiri acara ini, terimakasih.";
+                        $message = "Kepada yang terhormat {$fullName}, kami mengundang untuk menghadiri momen bahagia kami dalam acara\n\n{$url}\n\nBesar harapan kami agar {$fullName} dapat menghadiri acara ini, terimakasih.";
                         return "https://wa.me/" . $phone . "?text=" . rawurlencode($message);
                     })
                     ->openUrlInNewTab(),
