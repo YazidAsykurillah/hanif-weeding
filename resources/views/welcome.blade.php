@@ -82,9 +82,10 @@
                 
                 <!-- Small dates / "To the wedding of" -->
                 <div class="flex items-center space-x-2 mb-4 justify-center md:justify-start">
-                    <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">25. 04. 2026</span>
+                    <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">Minggu</span>
                     <span class="w-8 h-px bg-gray-400"></span>
-                    <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">Saturday</span>
+                    <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">26 April 2026</span>
+                    
                 </div>
                 
                 <p class="font-script text-3xl md:text-4xl text-gray-600 mb-2 mt-4 ml-0 md:ml-4 tracking-wider">Undangan Pernikahan</p>
@@ -163,7 +164,7 @@
                     <i data-lucide="calendar-heart" class="w-8 h-8 text-gray-400 mb-4"></i>
                     <h2 class="font-serif text-4xl mb-4 text-gray-900">Wedding Day</h2>
                     <div class="flex justify-center space-x-4 text-gray-600 mb-6">
-                        <span class="px-4 py-2 border border-gray-300 rounded flex items-center justify-center">25</span>
+                        <span class="px-4 py-2 border border-gray-300 rounded flex items-center justify-center">26</span>
                         <span class="px-4 py-2 border border-gray-300 rounded flex items-center justify-center uppercase tracking-wider text-xs">April</span>
                         <span class="px-4 py-2 border border-gray-300 rounded flex items-center justify-center">2026</span>
                     </div>
@@ -185,7 +186,7 @@
                         <div class="hidden md:block absolute left-0 top-1/2 w-px h-24 bg-gray-200 -mt-12 -ml-6"></div>
                         <span class="text-xs text-blue-500 font-semibold uppercase tracking-widest mb-3 transition-colors group-hover:text-blue-600">Afternoon</span>
                         <h4 class="font-serif text-2xl text-gray-900 mb-2">Resepsi Pernikahan</h4>
-                        <p class="text-gray-500 text-sm mb-4">11:00 - 12:30 WIB</p>
+                        <p class="text-gray-500 text-sm mb-4">12:00 - 13:30 WIB</p>
                         
                     </div>
                 </div>
