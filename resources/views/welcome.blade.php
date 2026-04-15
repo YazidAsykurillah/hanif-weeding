@@ -403,7 +403,7 @@
         <!-- Audio Player & Controls -->
         <!-- Update the 'src' attribute below with your actual music file path -->
         <audio id="bg-music" loop>
-            <source src="{{ asset('asset/welcome_home_nathan_moore.mp3') }}" type="audio/mpeg">
+            <source src="{{ asset('asset/music_back_sound.mp3') }}" type="audio/mpeg">
         </audio>
 
         <button id="music-toggle" class="fixed bottom-6 right-6 bg-gray-900/80 backdrop-blur-md text-white p-4 rounded-full shadow-2xl z-[100] transition-transform duration-300 hover:scale-110 hidden focus:outline-none">
