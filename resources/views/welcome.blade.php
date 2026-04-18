@@ -252,25 +252,16 @@
                 
                 <!-- Masonry-style grid layout -->
                 <div class="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-                    <div class="break-inside-avoid relative group overflow-hidden rounded shadow">
-                        <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=500&auto=format&fit=crop&grayscale=true" class="w-full object-cover block transition-transform duration-700 group-hover:scale-105" alt="Moment 1" loading="lazy">
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="break-inside-avoid relative group overflow-hidden rounded shadow">
-                        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=500&auto=format&fit=crop&grayscale=true" class="w-full object-cover block transition-transform duration-700 group-hover:scale-105" alt="Moment 2" loading="lazy">
-                    </div>
-                    <div class="break-inside-avoid relative group overflow-hidden rounded shadow">
-                        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=500&auto=format&fit=crop&grayscale=true" class="w-full object-cover block transition-transform duration-700 group-hover:scale-105" alt="Moment 3" loading="lazy">
-                    </div>
-                    <div class="break-inside-avoid relative group overflow-hidden rounded shadow lg:mt-0">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=500&auto=format&fit=crop&grayscale=true" class="w-full object-cover block transition-transform duration-700 group-hover:scale-105" alt="Moment 4" loading="lazy">
-                    </div>
-                    <div class="break-inside-avoid relative group overflow-hidden rounded shadow">
-                        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=500&auto=format&fit=crop&grayscale=true" class="w-full object-cover block transition-transform duration-700 group-hover:scale-105" alt="Moment 5" loading="lazy">
-                    </div>
-                    <div class="break-inside-avoid relative group overflow-hidden rounded shadow">
-                        <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?q=80&w=500&auto=format&fit=crop&grayscale=true" class="w-full object-cover block transition-transform duration-700 group-hover:scale-105" alt="Moment 6" loading="lazy">
-                    </div>
+                    @forelse($moments as $moment)
+                        <div class="break-inside-avoid relative group overflow-hidden rounded shadow">
+                            <img src="{{ asset('storage/' . $moment->image) }}" class="w-full object-cover block transition-transform duration-700 group-hover:scale-105" alt="Moment" loading="lazy">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                    @empty
+                        <div class="col-span-full py-12 text-center text-gray-400 italic">
+                            Belum ada momen yang dibagikan.
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </section>
