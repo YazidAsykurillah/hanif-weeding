@@ -210,8 +210,8 @@
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
-                    <a href="https://maps.google.com/maps?q=Auditorium%20Poltekkes%20Kemenkes%20Semarang,%20Pedalangan,%20Semarang" target="_blank" class="mt-6 px-6 py-3 border border-gray-400 text-gray-700 hover:bg-gray-900 hover:text-white uppercase tracking-widest text-xs font-medium transition-all duration-300 rounded focus:outline-none flex items-center gap-2">
-                        Get Directions
+                    <a href="https://maps.google.com/maps?q=Auditorium%20Poltekkes%20Kemenkes%20Semarang,%20Pedalangan,%20Semarang" target="_blank" class="mt-6 px-6 py-3 border bg-gray-900 text-white hover:bg-white hover:text-gray-700 uppercase tracking-widest text-xs font-medium transition-all duration-300 rounded focus:outline-none flex items-center gap-2">
+                        Buka Google Map
                     </a>
                 </div>
             </div>
