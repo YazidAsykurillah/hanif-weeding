@@ -82,10 +82,15 @@
                 
                 <!-- Small dates / "To the wedding of" -->
                 <div class="flex items-center space-x-2 mb-4 justify-center md:justify-start">
-                    <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">Minggu</span>
-                    <span class="w-8 h-px bg-gray-400"></span>
-                    <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">26 April 2026</span>
-                    
+                    @if($mainAgenda)
+                        <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">{{ \Carbon\Carbon::parse($mainAgenda->date)->translatedFormat('l') }}</span>
+                        <span class="w-8 h-px bg-gray-400"></span>
+                        <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">{{ \Carbon\Carbon::parse($mainAgenda->date)->translatedFormat('d F Y') }}</span>
+                    @else
+                        <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">Minggu</span>
+                        <span class="w-8 h-px bg-gray-400"></span>
+                        <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">26 April 2026</span>
+                    @endif
                 </div>
                 
                 <p class="font-script text-3xl md:text-4xl text-gray-600 mb-2 mt-4 ml-0 md:ml-4 tracking-wider">Undangan Pernikahan</p>
@@ -162,57 +167,48 @@
             <div class="max-w-5xl mx-auto px-6 text-center">
                 <div class="mb-12 flex flex-col items-center">
                     <i data-lucide="calendar-heart" class="w-8 h-8 text-gray-400 mb-4"></i>
-                    <h2 class="font-serif text-4xl mb-4 text-gray-900">Wedding Day</h2>
-                    <div class="flex justify-center space-x-4 text-gray-600 mb-6">
-                        <span class="px-4 py-2 border border-gray-300 rounded flex items-center justify-center">26</span>
-                        <span class="px-4 py-2 border border-gray-300 rounded flex items-center justify-center uppercase tracking-wider text-xs">April</span>
-                        <span class="px-4 py-2 border border-gray-300 rounded flex items-center justify-center">2026</span>
-                    </div>
+                    <h2 class="font-serif text-4xl mb-4 text-gray-900">Wedding Agenda</h2>
                     <div class="w-24 h-px bg-gray-300 mt-2"></div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 max-w-4xl mx-auto">
-                    <!-- Schedule Item 1 -->
-                    <div class="flex flex-col items-center group cursor-pointer">
-                        <span class="text-xs text-blue-500 font-semibold uppercase tracking-widest mb-3 transition-colors group-hover:text-blue-600">Morning</span>
-                        <h4 class="font-serif text-2xl text-gray-900 mb-2">Akad Nikah</h4>
-                        <p class="text-gray-500 text-sm mb-4">08:00 WIB</p>
-                        
-                    </div>
-                    
-                    <!-- Schedule Item 2 -->
-                    <div class="flex flex-col items-center group cursor-pointer relative">
-                        <!-- Desktop Separator Left -->
-                        <div class="hidden md:block absolute left-0 top-1/2 w-px h-24 bg-gray-200 -mt-12 -ml-6"></div>
-                        <span class="text-xs text-blue-500 font-semibold uppercase tracking-widest mb-3 transition-colors group-hover:text-blue-600">Afternoon</span>
-                        <h4 class="font-serif text-2xl text-gray-900 mb-2">Resepsi Pernikahan</h4>
-                        <p class="text-gray-500 text-sm mb-4">12:00 - 13:30 WIB</p>
-                        
-                    </div>
-                </div>
+                <div class="flex flex-wrap justify-center gap-8 mt-16 max-w-6xl mx-auto">
+                    @forelse($agendas as $agenda)
+                        <div class="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center group hover:shadow-md transition-all duration-300 {{ !$agenda->is_active ? 'opacity-60 grayscale-[0.5]' : '' }}">
+                            <div class="text-xs text-blue-500 font-semibold uppercase tracking-widest mb-3">
+                                {{ \Carbon\Carbon::parse($agenda->date)->translatedFormat('l, d F Y') }}
+                            </div>
+                            <h4 class="font-serif text-2xl text-gray-900 mb-2">{{ $agenda->name }}</h4>
+                            <p class="text-gray-500 text-sm mb-6">
+                                {{ \Carbon\Carbon::parse($agenda->start_time)->format('H:i') }} 
+                                @if($agenda->end_time)
+                                    - {{ \Carbon\Carbon::parse($agenda->end_time)->format('H:i') }}
+                                @endif
+                                WIB
+                            </p>
+                            
+                            <div class="w-full pt-6 border-t border-gray-50 mt-auto">
+                                <p class="font-medium text-gray-900 mb-1">{{ $agenda->location }}</p>
+                                <p class="text-sm text-gray-500 mb-6">{{ $agenda->address }}</p>
+                                
+                                @if($agenda->is_main_agenda)
+                                    <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($agenda->address) }}" target="_blank" class="w-full py-3 px-4 border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white uppercase tracking-widest text-[10px] font-semibold transition-all duration-300 rounded flex items-center justify-center gap-2">
+                                        <i data-lucide="map-pin" class="w-3 h-3"></i>
+                                        <span>Open In Map</span>
+                                    </a>
+                                @endif
+                            </div>
 
-                <!-- Google Map Location -->
-                <div class="mt-20 max-w-4xl mx-auto flex flex-col items-center">
-                    <i data-lucide="map-pin" class="w-6 h-6 text-gray-400 mb-3"></i>
-                    <h4 class="font-serif text-2xl text-gray-900 mb-3">Lokasi Acara</h4>
-                    <p class="text-gray-600 text-sm text-center leading-relaxed max-w-lg mb-8">
-                        Auditorium Poltekkes Kemenkes Semarang.<br/>
-                        Jalan Tirto Agung, Pedalangan, Kec. Banyumanik, Kota Semarang, Jawa Tengah 50268
-                    </p>
-                    <div class="w-full h-80 rounded-xl overflow-hidden shadow-lg border border-gray-200">
-                        <iframe 
-                            src="https://maps.google.com/maps?q=Auditorium%20Poltekkes%20Kemenkes%20Semarang,%20Pedalangan,%20Semarang&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                    <a href="https://maps.google.com/maps?q=Auditorium%20Poltekkes%20Kemenkes%20Semarang,%20Pedalangan,%20Semarang" target="_blank" class="mt-6 px-6 py-3 border bg-gray-900 text-white hover:bg-white hover:text-gray-700 uppercase tracking-widest text-xs font-medium transition-all duration-300 rounded focus:outline-none flex items-center gap-2">
-                        Buka Google Map
-                    </a>
+                            @if($agenda->description)
+                                <p class="mt-4 text-xs italic text-gray-400 leading-relaxed">
+                                    {{ $agenda->description }}
+                                </p>
+                            @endif
+                        </div>
+                    @empty
+                        <div class="col-span-full py-12 text-center text-gray-400 italic">
+                            Informasi agenda akan segera diperbarui.
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </section>
