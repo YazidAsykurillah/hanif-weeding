@@ -9,7 +9,7 @@ Route::get('/', function () {
     $groom = \App\Models\Partner::where('type', 'groom')->first();
     $bankAccounts = \App\Models\BankAccount::where('is_active', true)->get();
     $moments = \App\Models\Media::where('category', 'moment-of-together')->get();
-    $agendas = \App\Models\Agenda::orderBy('date')->orderBy('start_time')->get();
+    $agendas = \App\Models\Agenda::orderBy('date')->orderBy('start_time', 'desc')->get();
     $mainAgenda = $agendas->where('is_main_agenda', true)->first() ?? $agendas->first();
 
     return view('welcome', compact('bride', 'groom', 'bankAccounts', 'moments', 'agendas', 'mainAgenda'));
